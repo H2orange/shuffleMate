@@ -1,0 +1,110 @@
+{
+  "initial": {
+    "root": "F:/",
+    "hasDevice": true,
+    "tracks": 2,
+    "marked": 0,
+    "slotText": "\n      \n        \n          \n            \n            iPod Shuffle\n          \n          F: · 第 4 代 · FAT32\n        \n        \n          2曲目\n          1.9 GB可用\n        \n        \n          VoiceOver 已开启\n          刷新\n        \n      ",
+    "statusText": "已读取设备曲库：2 首。",
+    "ejectDisabled": false,
+    "removeDisabled": true,
+    "writeDisabled": true,
+    "rows": 2
+  },
+  "gone": {
+    "root": null,
+    "hasDevice": false,
+    "tracks": 0,
+    "marked": 0,
+    "slotText": "未检测到设备重新检测",
+    "statusText": "iPod 已断开，设备信息已清空。",
+    "ejectDisabled": true,
+    "removeDisabled": true,
+    "writeDisabled": true,
+    "rows": 0
+  },
+  "back": {
+    "root": "F:/",
+    "hasDevice": true,
+    "tracks": 2,
+    "marked": 0,
+    "slotText": "\n      \n        \n          \n            \n            iPod Shuffle\n          \n          F: · 第 4 代 · FAT32\n        \n        \n          2曲目\n          1.9 GB可用\n        \n        \n          VoiceOver 已开启\n          刷新\n        \n      ",
+    "statusText": "已读取设备曲库：2 首。",
+    "ejectDisabled": false,
+    "removeDisabled": true,
+    "writeDisabled": true,
+    "rows": 2
+  },
+  "results": [
+    {
+      "name": "界面加载了真实页面且 preload 生效",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "preload 暴露了 onDeviceChange",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "启动时检测到真机（后续要靠它验证\"插回来自动读曲库\"）",
+      "ok": true,
+      "detail": "F:/"
+    },
+    {
+      "name": "★ 渲染进程收到了 device:changed（拔出）",
+      "ok": true,
+      "detail": "root=null"
+    },
+    {
+      "name": "设备对象被清空",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "曲目列表被清空",
+      "ok": true,
+      "detail": "0 首 / 0 行"
+    },
+    {
+      "name": "设备栏显示「未检测到设备」",
+      "ok": true,
+      "detail": "未检测到设备重新检测"
+    },
+    {
+      "name": "状态栏提示已断开",
+      "ok": true,
+      "detail": "iPod 已断开，设备信息已清空。"
+    },
+    {
+      "name": "设备相关按钮全部禁用",
+      "ok": true,
+      "detail": "弹出=true 移除=true 写入=true"
+    },
+    {
+      "name": "★ 渲染进程收到了 device:changed（插入）",
+      "ok": true,
+      "detail": "root=F:/"
+    },
+    {
+      "name": "自动重新读到了曲库",
+      "ok": true,
+      "detail": "2 首"
+    },
+    {
+      "name": "设备栏恢复显示设备卡片",
+      "ok": true,
+      "detail": "\n      \n        \n          \n            "
+    },
+    {
+      "name": "「安全弹出」按钮恢复可用",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "读回的曲目数与初始一致",
+      "ok": true,
+      "detail": "初始 2 → 现在 2"
+    }
+  ]
+}

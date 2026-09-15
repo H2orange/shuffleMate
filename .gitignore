@@ -1,0 +1,48 @@
+# ===== 依赖 =====
+node_modules/
+
+# ===== 构建产物 =====
+dist/
+release/
+out/
+
+# ===== 设备数据库备份 =====
+# 每次写 iTunesSD 前自动生成，含设备曲库元数据，不纳入版本管理
+backups/
+
+# ===== 日志 =====
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== 系统 / 编辑器 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== 环境变量 =====
+.env
+.env.local
+.env.*.local
+
+# ===== 临时文件 =====
+*.tmp
+*.bak
+tmp/
+temp/
+
+# ===== 自检脚本产物 =====
+# verify-ui.js 每次运行会写一份控制台快照报告，属生成物
+scripts/.ui-probe.json
+
+# ===== 误落在项目根目录的第三方驱动日志目录 =====
+NVIDIA Corporation/
+
+# workBuddy 项目记忆（含决策日志 / 设备细节），不入库
+.workbuddy

@@ -1,0 +1,38 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5BD0F2"/>
+      <stop offset="1" stop-color="#2C9FE0"/>
+    </linearGradient>
+    <linearGradient id="dev" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9F6FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0B3A66" flood-opacity="0.30"/>
+    </filter>
+  </defs>
+
+  <!-- 圆角 App 底板 -->
+  <rect x="22" y="22" width="468" height="468" rx="110" fill="url(#bg)"/>
+  <rect x="22" y="22" width="468" height="468" rx="110" fill="none" stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="3"/>
+
+  <!-- iPod Shuffle 机身 + 背夹 -->
+  <g filter="url(#shadow)">
+    <rect x="196" y="92" width="120" height="46" rx="23" fill="#FFFFFF" opacity="0.97"/>
+    <rect x="158" y="116" width="196" height="296" rx="50" fill="url(#dev)"/>
+  </g>
+
+  <!-- 圆形控制盘 + 播放键 -->
+  <circle cx="256" cy="226" r="80" fill="#E4F3FF"/>
+  <circle cx="256" cy="226" r="80" fill="none" stroke="#C7E6FB" stroke-width="3"/>
+  <circle cx="256" cy="226" r="33" fill="#2C9FE0"/>
+  <path d="M246 210 L274 226 L246 242 Z" fill="#FFFFFF"/>
+
+  <!-- 右下角音符点缀 -->
+  <g fill="#2C9FE0">
+    <rect x="300" y="350" width="13" height="48" rx="6.5"/>
+    <circle cx="293" cy="396" r="16"/>
+    <path d="M313 350 q30 4 26 32 q-12 -16 -26 -18 z"/>
+  </g>
+</svg>

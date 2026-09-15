@@ -1,0 +1,60 @@
+{
+  "name": "shufflemate",
+  "productName": "Shuffle 管家",
+  "version": "0.1.0",
+  "description": "iPod Shuffle 音乐管理工具 —— 增删歌曲、重建数据库、生成中文 VoiceOver 语音",
+  "main": "dist/main/index.js",
+  "author": "ShuffleMate",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && electron . --dev",
+    "dev:sw": "npm run build && electron . --dev --software-render",
+    "start:sw": "npm run build && electron . --software-render",
+    "test:ui": "electron scripts/verify-ui.js",
+    "test:core": "npm run build && node scripts/test-core.js",
+    "test:all": "npm run test:core && npm run test:ui",
+    "test:hotplug": "npm run build && electron scripts/verify-hotplug.js",
+    "test:device": "node scripts/e2e-device.js",
+    "device:clean": "node scripts/clean-device.js",
+    "device:restore": "node scripts/restore-library.js",
+    "package": "npm run build && electron-builder --win nsis",
+    "package:dir": "npm run build && electron-builder --win --dir"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2"
+  },
+  "build": {
+    "appId": "com.shufflemate.app",
+    "productName": "Shuffle 管家",
+    "icon": "assets/icon.ico",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "assets/**/*",
+      "dist/**/*",
+      "src/renderer/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "assets/icon.ico"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Shuffle 管家"
+    }
+  }
+}

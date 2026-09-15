@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="ACtSYynQqpeWpm4aQANTf1">
+<head data-page-node-id="TVlWaG6bdH31eNy38Q8Gsi">
+<meta charset="UTF-8" data-page-node-id="FeI2DT9RFsx6jirsnL1e5G">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="gHbAOa9V3slLMP8cQB05jh">
+<title>Shuffle 管家 — 图标设计稿</title>
+<style>
+  :root{
+    --bg:#eef2f7; --card:#ffffff; --ink:#1f2a37; --muted:#6b7785;
+    --line:#e6ebf2; --accent:#2C9FE0;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    padding:40px 24px 64px;
+  }
+  .wrap{max-width:980px;margin:0 auto}
+  header{text-align:center;margin-bottom:36px}
+  header h1{font-size:26px;font-weight:700;margin:0 0 8px;letter-spacing:.5px}
+  header p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:24px 20px;box-shadow:0 10px 30px rgba(31,42,55,.06);
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(31,42,55,.10)}
+  .frame{
+    width:200px;height:200px;border-radius:44px;overflow:hidden;
+    box-shadow:0 8px 24px rgba(31,42,55,.12);margin-bottom:18px;
+  }
+  .frame svg{display:block;width:100%;height:100%}
+  .badge{
+    display:inline-block;font-size:11px;font-weight:700;color:#fff;
+    background:var(--accent);padding:3px 10px;border-radius:999px;margin-bottom:10px;
+  }
+  .name{font-size:17px;font-weight:650;margin:0 0 8px}
+  .desc{font-size:13px;color:var(--muted);line-height:1.7;margin:0}
+  .palette{display:flex;gap:6px;margin-top:14px}
+  .sw{width:22px;height:22px;border-radius:6px;border:1px solid rgba(0,0,0,.06)}
+  footer{margin-top:40px;text-align:center;color:var(--muted);font-size:13px;line-height:1.8}
+  footer b{color:var(--ink)}
+</style>
+</head>
+<body data-page-node-id="CjAJ9hZgZkKkCIMG4c5HJb">
+<div class="wrap" data-page-node-id="3U1Ski7KfNPVBIxCmEZp0t">
+  <header data-page-node-id="uFaDAH16w7TbxPfAhMNsh0">
+    <h1 data-page-node-id="TdXxhHy6X2xSkaDFyUy5ja">Shuffle 管家 · 图标设计稿</h1>
+    <p data-page-node-id="gkuB6r4XLea4JBjxOBcCQW">为 iPod Shuffle 管理工具设计专属图标，替换 Electron 默认图标。<br data-page-node-id="lnmSg8baCgdv79EP7OV4VD">
+       三套矢量方案，均为 512×512 圆角 App 图标，可直接导出 PNG / ICO 接入 Electron。</p>
+  </header>
+
+  <div class="grid" data-page-node-id="dCArzd7pR5yepEUBh7hEyC">
+
+    <!-- 概念 1：设备本体 -->
+    <div class="card" data-page-node-id="DgCsKbBHYkLHD6NvEMZc0w">
+      <span class="badge" data-page-node-id="0IfCJmkyngdtmBZS7x77oS">推荐</span>
+      <div class="frame" data-page-node-id="xzEqAaz93PrrhmHfRai4wb">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-page-node-id="Fx2uF2wSQImXEr9RB31kYr">
+          <defs data-page-node-id="TvUounffti7bH20FB59mDG">
+            <linearGradient id="c1bg" x1="0" y1="0" x2="1" y2="1" data-page-node-id="bguFJhpYNCnDM1rhQdtzpc">
+              <stop offset="0" stop-color="#5BD0F2" data-page-node-id="nc06tfIkJoJYlmBk1vTOGC"/><stop offset="1" stop-color="#2C9FE0" data-page-node-id="M5to51Cf9Bp48fpOdqjUES"/>
+            </linearGradient>
+            <linearGradient id="c1dev" x1="0" y1="0" x2="0" y2="1" data-page-node-id="C7ooAuNPXWxnh46K9q6hvj">
+              <stop offset="0" stop-color="#FFFFFF" data-page-node-id="qSwYDyVqpJPCVAnDC1drqT"/><stop offset="1" stop-color="#E9F6FF" data-page-node-id="CG1mZYQxziTCauVa9criBw"/>
+            </linearGradient>
+            <filter id="c1sh" x="-40%" y="-40%" width="180%" height="180%" data-page-node-id="sfJSyBHw1pBk6pPHECGiih">
+              <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0B3A66" flood-opacity="0.30" data-page-node-id="yv4kv3BhSJsbhG9BOwNhXF"/>
+            </filter>
+          </defs>
+          <rect x="22" y="22" width="468" height="468" rx="110" fill="url(#c1bg)" data-page-node-id="mvp3xzxi14I4DmD4D1VO4l"/>
+          <rect x="22" y="22" width="468" height="468" rx="110" fill="none" stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="3" data-page-node-id="TImYSD5rlYyTZfXk5nHz88"/>
+          <g filter="url(#c1sh)" data-page-node-id="Cx2LRKHaLDBpDhrmJCEFz2">
+            <rect x="196" y="92" width="120" height="46" rx="23" fill="#FFFFFF" opacity="0.97" data-page-node-id="NNJiDGzZxaxpLEZCj7l3LK"/>
+            <rect x="158" y="116" width="196" height="296" rx="50" fill="url(#c1dev)" data-page-node-id="4e1wHlZvlEhwOzRyjf9kqb"/>
+          </g>
+          <circle cx="256" cy="226" r="80" fill="#E4F3FF" data-page-node-id="0PBPfBjccVd1y0DAXbKFV9"/>
+          <circle cx="256" cy="226" r="80" fill="none" stroke="#C7E6FB" stroke-width="3" data-page-node-id="bsiidwOfkMav14yCgcmbdp"/>
+          <circle cx="256" cy="226" r="33" fill="#2C9FE0" data-page-node-id="RZJ5mVYLKSMMvwXowxTM5m"/>
+          <path d="M246 210 L274 226 L246 242 Z" fill="#FFFFFF" data-page-node-id="6bRKv9yNPAFSfLTIo0tcrY"/>
+          <g fill="#2C9FE0" data-page-node-id="UGs5KEMNKmQxrBbNYpnLZF">
+            <rect x="300" y="350" width="13" height="48" rx="6.5" data-page-node-id="jKMpLGltWzeufKGXtpxv7g"/>
+            <circle cx="293" cy="396" r="16" data-page-node-id="hD8mZ7auFX352aFq9W3m6u"/>
+            <path d="M313 350 q30 4 26 32 q-12 -16 -26 -18 z" data-page-node-id="4vPaabum4bQIrRR5z6QslC"/>
+          </g>
+        </svg>
+      </div>
+      <div class="name" data-page-node-id="wKKrtb8ZdQyP2U1HcSS2Dp">方案 A · 设备本体</div>
+      <p class="desc" data-page-node-id="1sIGK1uI1cOFYlqWawENRQ">最直白的方案：白色 iPod Shuffle 机身 + 顶部背夹 + 圆形控制盘 + 播放键，右下角点缀音符。一眼认出「这是 iPod 工具」。</p>
+      <div class="palette" data-page-node-id="DNzAdLWhNzSE9eWzhJ5p5a">
+        <span class="sw" style="background:#5BD0F2" data-page-node-id="kR4ONc676vK2Hpp1ekfoY6"></span>
+        <span class="sw" style="background:#2C9FE0" data-page-node-id="4VuUBUqeUcB72HMOTlfCpH"></span>
+        <span class="sw" style="background:#FFFFFF" data-page-node-id="METpzrM8kW2r62XEufODaA"></span>
+      </div>
+    </div>
+
+    <!-- 概念 2：Shuffle 符号 -->
+    <div class="card" data-page-node-id="A9igdZ6qEgmr8EowLHKmJS">
+      <div class="frame" data-page-node-id="dJ961euBblrocEApaNq0AX">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-page-node-id="s0lgHgok8iqRVcKiGQ7V1e">
+          <defs data-page-node-id="XkMwZyIH1mNHELXh64yKfL">
+            <linearGradient id="c2bg" x1="0" y1="0" x2="1" y2="1" data-page-node-id="JeKlmyuRR0YbxG5UcpFAuL">
+              <stop offset="0" stop-color="#43E0B0" data-page-node-id="WPLWvg8ejVssVru350ArIJ"/><stop offset="1" stop-color="#1FB6A6" data-page-node-id="vRHfbMBNv5tlV9fE8py2vY"/>
+            </linearGradient>
+          </defs>
+          <rect x="22" y="22" width="468" height="468" rx="110" fill="url(#c2bg)" data-page-node-id="XsNHrDHQ5DYt3VatEEwQGY"/>
+          <rect x="22" y="22" width="468" height="468" rx="110" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="3" data-page-node-id="oHYtkue8UFbAvs3yD0a8oH"/>
+          <g fill="none" stroke="#FFFFFF" stroke-width="28" stroke-linecap="round" data-page-node-id="Xz8xycy0NBVoPMmv0V8RHz">
+            <path d="M120 350 C 200 350, 200 162, 280 162 L 372 162" data-page-node-id="kuj8MmgAkMTqGnW1tYntHy"/>
+            <path d="M120 162 C 200 162, 200 350, 280 350 L 372 350" data-page-node-id="1Hf1H7Yp5KXqq417ki2IDj"/>
+          </g>
+          <g fill="#FFFFFF" data-page-node-id="Kw5BI1P1ZUmoT7kn30NGAO">
+            <path d="M390 162 l -32 -18 l 0 36 z" data-page-node-id="xJBVvy9MyxfQw07aZmjPJq"/>
+            <path d="M390 350 l -32 -18 l 0 36 z" data-page-node-id="C1c0ZR4IZAuax0VWgnbLIq"/>
+          </g>
+        </svg>
+      </div>
+      <div class="name" data-page-node-id="6l21yPfMhXJFHKFEIzSpUg">方案 B · Shuffle 符号</div>
+      <p class="desc" data-page-node-id="qme1w37seTxjrbihi3XDh5">用 Apple Shuffle 经典的交叉箭头作为主图形，呼应产品名「Shuffle」，抽象、现代、极简。辨识度高且不依赖设备外观。</p>
+      <div class="palette" data-page-node-id="7jEY79rvqQHIiQjlGknWia">
+        <span class="sw" style="background:#43E0B0" data-page-node-id="1QECysIYakIAs3dDLV83p7"></span>
+        <span class="sw" style="background:#1FB6A6" data-page-node-id="HNeR1VVNB2GWm6tfHqjpDf"></span>
+        <span class="sw" style="background:#FFFFFF" data-page-node-id="CtfNuWf0BtDoXXit23ILR0"></span>
+      </div>
+    </div>
+
+    <!-- 概念 3：音符 -->
+    <div class="card" data-page-node-id="gAi9t8Le0FdJDPCh3DOf67">
+      <div class="frame" data-page-node-id="eqFD8pHGp39xeNcYrSAdjI">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-page-node-id="EyUDSNthFEOlzuzmBeP9DA">
+          <defs data-page-node-id="osp5LqJBeSQubwMcvU9BCL">
+            <linearGradient id="c3bg" x1="0" y1="0" x2="1" y2="1" data-page-node-id="3belQlIcF2Yd1XC2gkG80M">
+              <stop offset="0" stop-color="#7C4DFF" data-page-node-id="rVZRWHRlJEu4XoOcRyj63n"/><stop offset="1" stop-color="#00C2FF" data-page-node-id="pJprxRjdNDqI6SYrRcJcJk"/>
+            </linearGradient>
+          </defs>
+          <rect x="22" y="22" width="468" height="468" rx="110" fill="url(#c3bg)" data-page-node-id="F307h5ILEtzAqVYoEEEJrr"/>
+          <rect x="22" y="22" width="468" height="468" rx="110" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="3" data-page-node-id="thVi51KH8DeoGITC4RqmZE"/>
+          <g fill="#FFFFFF" data-page-node-id="HUDjMP1FLVm5ihpaRFLvte">
+            <circle cx="200" cy="372" r="40" data-page-node-id="GplxZTmBEJLpQoG9FKw0IV"/>
+            <rect x="234" y="150" width="22" height="226" rx="11" data-page-node-id="OmYTn9uVVTXrwOmnDYZ2iy"/>
+            <path d="M256 150 q78 8 64 96 q-16 -54 -64 -64 z" data-page-node-id="AqGtVA9svDwO3qOyaD1oyh"/>
+          </g>
+        </svg>
+      </div>
+      <div class="name" data-page-node-id="Lg6X7qZp3jcWZO2OAlfonN">方案 C · 极简音符</div>
+      <p class="desc" data-page-node-id="N3GvbnwKlU9EwlDvaqKiVn">单个八分音符置于紫→青科技渐变底板上，最简洁、最「未来科技感」。弱化了设备特征，强调整体工具的现代气质。</p>
+      <div class="palette" data-page-node-id="BwYRErbfBhMhudtrQHkOkD">
+        <span class="sw" style="background:#7C4DFF" data-page-node-id="foLlzcuheBDVI9NsxUABJT"></span>
+        <span class="sw" style="background:#00C2FF" data-page-node-id="gOXdEC1ZwVbspKjaWrsvoy"></span>
+        <span class="sw" style="background:#FFFFFF" data-page-node-id="SJxZtlh2GycX9VSHz8UWBJ"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer data-page-node-id="CrSszmQf0Q6HeCRPpp6nb4">
+    选定方案后，我会：① 导出多尺寸 <b data-page-node-id="0WMgDIJyoB1DSY3HWxnb4H">PNG</b> 与 Windows <b data-page-node-id="WSM1VyXHntmUK8yAMZ3bOP">ICO</b>（16/32/48/256）；<br data-page-node-id="Cpvg604EUIHUTerApuK7lE">
+    ② 在 <b data-page-node-id="X9GEvWFbvVIRKPqCV20cfH">package.json</b> 的 <code data-page-node-id="UeHYWg4ZxjV9KOn4xTEslM">build.icon</code> 与主进程 <code data-page-node-id="lH5SeUL816CbFp93JGcKWE">BrowserWindow</code> 中接入，彻底替换 Electron 默认图标。
+  </footer>
+</div>
+</body>
+</html>
