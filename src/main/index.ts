@@ -41,6 +41,14 @@ if (softwareRender) {
   app.commandLine.appendSwitch('disable-software-rasterizer');
 }
 
+// 打包后 Chromium 沙箱在某些环境（受限容器、企业策略、杀毒软件）下
+// 创建命名管道会失败，触发 FATAL:platform_channel.cc(89) 直接崩溃。
+// 对桌面应用来说进程级沙箱收益有限，打包版本默认关闭以避免崩溃。
+const isPackaged = !process.argv.includes('--dev') && !process.defaultApp;
+if (isPackaged && !process.argv.includes('--no-sandbox')) {
+  app.commandLine.appendSwitch('no-sandbox');
+}
+
 function createWindow(): void {
   win = new BrowserWindow({
     width: 1200,
@@ -205,7 +213,7 @@ function registerIpc(): void {
   });
 
   ipcMain.handle('sync:run', async (_e, root: string, opts: SyncOptions) => {
-    const backupsRoot = path.join(app.getAppPath(), 'backups');
+    const backupsRoot = path.join(app.getPath('userData'), 'backups');
     const sender = _e.sender;
     try {
       return await syncDevice(root, backupsRoot, {

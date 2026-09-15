@@ -41,7 +41,7 @@ export function findFirstIpod(): string | null {
 function volumeLabel(root: string): string {
   const letter = root.replace(/:.*$/, '');
   try {
-    const script = `[Console]::Out.Write((Get-Volume -DriveLetter ${letter.replace(/'/g, '')} -ErrorAction Stop).FileSystemLabel)`;
+    const script = `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [Console]::Out.Write((Get-Volume -DriveLetter ${letter.replace(/'/g, '')} -ErrorAction Stop).FileSystemLabel)`;
     const encoded = Buffer.from(script, 'utf16le').toString('base64');
     const wsRoot = process.env.SystemRoot || 'C:\\Windows';
     const ps = path.join(wsRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
