@@ -125,12 +125,12 @@ fn base64_encode_utf16le(s: &str) -> String {
 pub fn list_voices_powershell() -> Result<Vec<crate::types::VoiceInfo>, Box<dyn std::error::Error>> {
     let script = r#"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
- = New-Object -ComObject SAPI.SpVoice
-foreach ( in .GetVoices()) {
-     = .GetDescription()
-     = try { .GetAttribute('Gender') } catch { '' }
-     = try { .GetAttribute('Language') } catch { '' }
-    Write-Output ('{0}|{1}|{2}' -f , , )
+$voice = New-Object -ComObject SAPI.SpVoice
+foreach ($v in $voice.GetVoices()) {
+    $name = $v.GetDescription()
+    $gender = try { $v.GetAttribute('Gender') } catch { '' }
+    $lang = try { $v.GetAttribute('Language') } catch { '' }
+    Write-Output ('{0}|{1}|{2}' -f $name, $lang, $gender)
 }"#;
     let encoded = base64_encode_utf16le(script);
     let ps = powershell_path();
@@ -172,13 +172,13 @@ pub fn synthesize(text: &str, rate: u32, voice: Option<&str>, speed: i32) -> Res
     };
 
     let voice_select = if let Some(name) = voice {
-        format!(" = .GetVoices() | Where-Object {{ .GetDescription() -eq '{}' }}; if () {{ .Voice =  }}", name.replace("'", "''"))
+        format!("$v = $voice.GetVoices() | Where-Object {{ $_.GetDescription() -eq '{}' }}; if ($v) {{ $voice.Voice = $v }}", name.replace("'", "''"))
     } else {
         String::new()
     };
 
     let script = format!(
-        "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n = New-Object -ComObject SAPI.SpVoice\n{}\n.Rate = {}\n = New-Object -ComObject SAPI.SpFileStream\n.Format.Type = {}\n.Open('{}', 3, False)\n.AudioOutputStream = \n.Speak('{}')\n.Close()",
+        "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n$voice = New-Object -ComObject SAPI.SpVoice\n{}\n$voice.Rate = {}\n$stream = New-Object -ComObject SAPI.SpFileStream\n$stream.Format.Type = {}\n$stream.Open('{}', 3, False)\n$voice.AudioOutputStream = $stream\n$voice.Speak('{}')\n$stream.Close()",
         voice_select,
         speed.clamp(-10, 10),
         saft,
