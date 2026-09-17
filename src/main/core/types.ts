@@ -165,7 +165,7 @@ export interface TrackView {
   /** 'MP3' | 'AAC' */
   format: string;
   /** 元数据来源 */
-  source: 'id3' | 'itunesdb' | 'filename';
+  source: 'id3' | 'itunesdb' | 'imported' | 'filename';
   /** 文件是否真实存在（数据库里可能残留已丢失文件的条目） */
   exists: boolean;
   /** 是否已有 VoiceOver 语音 */

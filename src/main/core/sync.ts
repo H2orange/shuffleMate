@@ -22,7 +22,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { DEFAULT_PREGAP, probeAudioFile, UnsupportedFormatError } from './audio';
-import { loadLibrary } from './device';
+import { loadLibrary, readTrackMeta, writeTrackMeta } from './device';
 import {
   atomicWriteFile,
   backupFile,
@@ -492,6 +492,30 @@ export async function syncDevice(
     }
   } else {
     result.voiceoverSkipped = finalTracks.length;
+  }
+
+  // --- 7b. 边车元数据：给无标签的新曲目记下展示信息 ---------------------
+  // 无标签音频写入设备后文件名是 JPSL 这类 4 字名、iTunesDB 也无条目，
+  // 回读时标题会退化成文件名。这里把导入时解析出的标题/艺术家/专辑落盘，
+  // loadLibrary 的第三级回退据此恢复正确展示（见 device.ts readTrackMeta）。
+  if (result.added > 0 || result.removed > 0 || result.orphanRemoved > 0) {
+    try {
+      const meta = readTrackMeta(root);
+      for (const t of removeList) meta.delete(t.filename.replace(/^\/+/, ''));
+      const alive = new Set(finalTracks.map((t) => t.filename.replace(/^\/+/, '')));
+      for (const key of [...meta.keys()]) if (!alive.has(key)) meta.delete(key);
+      for (const p of pending) {
+        if (!p.devicePath) continue;
+        meta.set(p.absPath, {
+          title: p.title,
+          artist: p.info.tag.artist ?? '',
+          album: p.info.tag.album ?? '',
+        });
+      }
+      writeTrackMeta(root, meta);
+    } catch (e) {
+      warnings.push(`导入元数据写入失败（不影响同步结果）：${(e as Error).message}`);
+    }
   }
 
   // --- 8. 刷盘 -------------------------------------------------------------

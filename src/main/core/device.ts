@@ -8,7 +8,7 @@ import { execFileSync } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import { readTags } from './audio';
-import { toPosix } from './fsx';
+import { atomicWriteFile, ensureDir, toPosix } from './fsx';
 import { parseSd } from './itunessd';
 import { readItunesDb } from './itunesdb';
 import { DeviceInfo, SdModel, TrackView } from './types';
@@ -114,17 +114,67 @@ export interface LoadedLibrary {
   orphanFiles: number;
 }
 
+// ---------------------------------------------------------------- 导入时元数据
+
+/**
+ * 边车元数据：导入时记下的标题/艺术家/专辑等展示信息。
+ *
+ * 无 ID3 标签的音频写入设备后文件名是 `JPSL` 这类 4 字名，iTunesDB 里
+ * 也没有对应条目，回读时标题只能退化成「文件名即标题」。因此同步时把导入
+ * 那一刻解析出的展示信息写进本文件（见 sync.ts），loadLibrary 多一级回退。
+ * 只服务展示，不参与播放与数据库重建。
+ */
+const METADATA_REL = 'iPod_Control/ShuffleMate/titles.json';
+
+export interface TrackMeta {
+  title: string;
+  artist: string;
+  album: string;
+}
+
+/** 读边车元数据；缺失或损坏返回空表。键为设备相对路径（无前导斜杠）。 */
+export function readTrackMeta(root: string): Map<string, TrackMeta> {
+  const out = new Map<string, TrackMeta>();
+  try {
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(root, METADATA_REL), 'utf8'),
+    ) as Record<string, Partial<TrackMeta>>;
+    for (const [rel, m] of Object.entries(raw)) {
+      if (!m || typeof m.title !== 'string' || m.title === '') continue;
+      out.set(toPosix(rel), {
+        title: m.title,
+        artist: typeof m.artist === 'string' ? m.artist : '',
+        album: typeof m.album === 'string' ? m.album : '',
+      });
+    }
+  } catch {
+    /* 没有或损坏都等同于无元数据 */
+  }
+  return out;
+}
+
+/** 写边车元数据（原子写 + fsync，与数据库同等待遇）。 */
+export function writeTrackMeta(root: string, entries: Map<string, TrackMeta>): void {
+  const obj: Record<string, TrackMeta> = {};
+  for (const [rel, m] of [...entries].sort(([a], [b]) => (a < b ? -1 : 1))) obj[rel] = m;
+  const file = path.join(root, METADATA_REL);
+  ensureDir(path.dirname(file));
+  atomicWriteFile(file, Buffer.from(JSON.stringify(obj, null, 2), 'utf8'));
+}
+
 /**
  * 装载设备曲库。
  *
- * 标题解析采用三级回退：**ID3 标签 → iTunesDB 标题 → 文件名**。
+ * 标题解析采用四级回退：**ID3 标签 → iTunesDB 标题 → 导入时元数据 → 文件名**。
  * 中间那级不可省略 —— 实测本机 13 首六级听力 MP3 全部没有标题标签，
  * 歌名只存在于 iTunesDB；少了它，界面上只能看到 `SBJT`、`DQNL` 这种随机名。
+ * 第三级兜住本应用自己写入的无标签曲目：标题记在边车元数据里（见 writeTrackMeta）。
  */
 export function loadLibrary(root: string, readTagData = true): LoadedLibrary {
   const model = readModel(root);
   const files = scanMusicFiles(root);
   const db = readItunesDb(root);
+  const meta = readTrackMeta(root);
 
   let voiceFiles: Set<string>;
   try {
@@ -145,17 +195,20 @@ export function loadLibrary(root: string, readTagData = true): LoadedLibrary {
     if (!file) missing++;
 
     const dbEntry = db.get(rel);
+    const metaEntry = meta.get(rel);
     const stem = path.basename(rel).replace(/\.[^.]+$/, '');
     const tag = file && readTagData ? readTags(file.absPath) : {};
 
-    const title = tag.title || dbEntry?.title || stem;
-    const artist = tag.artist || dbEntry?.artist || '';
-    const album = tag.album || dbEntry?.album || '';
+    const title = tag.title || dbEntry?.title || metaEntry?.title || stem;
+    const artist = tag.artist || dbEntry?.artist || metaEntry?.artist || '';
+    const album = tag.album || dbEntry?.album || metaEntry?.album || '';
     const source: TrackView['source'] = tag.title
       ? 'id3'
       : dbEntry?.title
         ? 'itunesdb'
-        : 'filename';
+        : metaEntry?.title
+          ? 'imported'
+          : 'filename';
 
     return {
       id: t.dbid.toString('hex'),

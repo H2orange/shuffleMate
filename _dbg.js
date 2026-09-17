@@ -1,0 +1,12 @@
+const fs = require('fs');
+const s = fs.readFileSync('_handles.ps1', 'utf8');
+const t2 = '    bool ok = DuplicateHandle(hp, (IntPtr)e.Handle, GetCurrentProcess(), out dst, 0, false, 2);\r\n    CloseHandle(hp);\r\n    return ok ? dst : IntPtr.Zero;';
+const t3 = '    var res = new List<string>();\r\n    int len = 1 << 24;';
+const t4 = '    Marshal.FreeHGlobal(buf);\r\n    return res;';
+console.log('t2', s.includes(t2));
+console.log('t3', s.includes(t3));
+console.log('t4', s.includes(t4));
+const i = s.indexOf('bool ok = DuplicateHandle');
+console.log(JSON.stringify(s.slice(i, i + 160)));
+const j = s.indexOf('var res = new List<string>();');
+console.log(JSON.stringify(s.slice(j, j + 80)));

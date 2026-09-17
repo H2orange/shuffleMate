@@ -318,7 +318,13 @@
       .map(({ t }) => {
         const marked = state.marked.has(t.id);
         const srcLabel =
-          t.source === 'id3' ? null : t.source === 'itunesdb' ? '取自 iTunesDB' : '文件名';
+          t.source === 'id3'
+            ? null
+            : t.source === 'itunesdb'
+              ? '取自 iTunesDB'
+              : t.source === 'imported'
+                ? '导入时记录'
+                : '文件名';
         const vo = t.hasVoiceover
           ? '<span class="badge vo">语音</span>'
           : state.voiceoverSupported
@@ -687,10 +693,10 @@
           : ''
       }
       <p style="margin-top:14px">
-        <b>下一步：点「安全弹出」再拔线。</b>
+        <b>下一步：点底栏「安全弹出」再拔线。</b>
         FAT32 有写缓存，不刷盘就断开，设备会读到旧数据库。
       </p>`;
-    showDialog(isWrite ? '写入完成' : '移除完成', body, '安全弹出', doEject);
+    showDialog(isWrite ? '写入完成' : '移除完成', body, '确定');
   }
 
   async function doEject() {
@@ -728,7 +734,7 @@
     $('dialogBody').innerHTML = html;
 
     const ok = $('dialogOk');
-    ok.textContent = okText || '好';
+    ok.textContent = okText || '确定';
     ok.className = opts.okClass || 'btn btn-primary';
     ok.onclick = () => {
       closeDialog();
